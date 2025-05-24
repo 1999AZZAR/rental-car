@@ -335,40 +335,35 @@
             transition: transform 0.3s ease;
         }
         
-        #mobile-menu-button.active i {
+        #mobile-menu-button.menu-open i {
             transform: rotate(90deg);
         }
         
         /* Mobile menu animation */
         #mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
-                        opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
-                        padding 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
             opacity: 0;
-            padding-top: 0;
-            padding-bottom: 0;
+            transform: translateY(-10px);
+            display: none; /* Start hidden to avoid flicker */
         }
         
-        #mobile-menu.active {
-            max-height: 300px;
+        #mobile-menu.menu-open {
             opacity: 1;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            transform: translateY(0);
+            display: block;
         }
         
         /* Mobile menu links animation */
         #mobile-menu a {
-            transform: translateY(-10px);
             opacity: 0;
+            transform: translateY(-10px);
             transition: transform 0.3s ease, opacity 0.3s ease;
             transition-delay: calc(var(--order) * 0.05s);
         }
         
-        #mobile-menu.active a {
-            transform: translateY(0);
+        #mobile-menu.menu-open a {
             opacity: 1;
+            transform: translateY(0);
         }
         
         #mobile-menu a:nth-child(1) { --order: 1; }
@@ -456,7 +451,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden shadow-lg py-2" aria-labelledby="mobile-menu-button" role="menu">
+        <div id="mobile-menu" class="md:hidden shadow-lg py-2" aria-labelledby="mobile-menu-button" role="menu">
             <a href="{{ url_for('index') }}#home" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_home %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_home %}false{% endblock %}">Beranda</a>
             <a href="{{ url_for('all_cars') }}" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_cars %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_cars %}false{% endblock %}">Mobil Kami</a>
             <a href="{{ url_for('index') }}#how-it-works" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_how %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_how %}false{% endblock %}">Cara Kerja</a>
@@ -567,15 +562,14 @@
             
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function() {
-                    // Toggle active class for button animation
-                    this.classList.toggle('active');
+                    // Toggle menu-open class for button animation
+                    this.classList.toggle('menu-open');
                     
-                    // Toggle active class for menu animation
-                    mobileMenu.classList.toggle('active');
-                    mobileMenu.classList.toggle('hidden');
+                    // Toggle classes for menu animation
+                    mobileMenu.classList.toggle('menu-open');
                     
                     // Update ARIA attributes
-                    const isExpanded = mobileMenu.classList.contains('active');
+                    const isExpanded = mobileMenu.classList.contains('menu-open');
                     mobileMenuButton.setAttribute('aria-expanded', isExpanded);
                 });
             }
