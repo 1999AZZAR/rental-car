@@ -1,0 +1,739 @@
+{% extends "base.html" %}
+
+{% block title %}Galeri Armada Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block meta_title %}Galeri Armada Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block meta_description %}Lihat koleksi foto armada mobil rental kami di Palu. Interior, eksterior, dan momen perjalanan pelanggan kami. Rental mobil berkualitas dengan harga terjangkau di Sulawesi Tengah.{% endblock %}
+{% block meta_keywords %}galeri rental mobil palu, foto armada mobil palu, interior mobil rental palu, kendaraan sewa palu, foto mobil rental palu, armada sewa mobil palu, foto alphard palu, foto fortuner palu, mobil pernikahan palu, dokumentasi rental mobil{% endblock %}
+{% block og_title %}Galeri Armada Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block og_description %}Lihat koleksi foto armada mobil rental kami di Palu. Interior, eksterior, dan momen perjalanan pelanggan kami. Rental mobil berkualitas dengan harga terjangkau di Sulawesi Tengah.{% endblock %}
+{% block twitter_title %}Galeri Armada Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block twitter_description %}Lihat koleksi foto armada mobil rental kami di Palu. Interior, eksterior, dan momen perjalanan pelanggan kami.{% endblock %}
+
+{% block nav_gallery %}active-nav-link{% endblock %}
+{% block mobile_nav_gallery %}active-nav-link{% endblock %}
+{% block aria_current_gallery %}page{% endblock %}
+{% block mobile_aria_current_gallery %}page{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+<style>
+    /* Lightbox Customizations */
+    .lightboxOverlay { background-color: var(--lightbox-bg) !important; }
+    .lb-caption { color: var(--lightbox-caption-color) !important; font-weight: 500 !important; }
+    .lb-number { color: var(--lightbox-caption-color) !important; opacity: 0.8; }
+    .lb-close { filter: none !important; opacity: 0.8 !important; transition: opacity 0.2s ease; }
+    .lb-close:hover { opacity: 1 !important; }
+    .lb-nav a.lb-prev, .lb-nav a.lb-next { opacity: 0.7 !important; transition: opacity 0.2s ease; }
+    .lb-nav a.lb-prev:hover, .lb-nav a.lb-next:hover { opacity: 1 !important; }
+
+    .gallery-page-item {
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: var(--card-bg);
+    }
+    html.dark .gallery-page-item {
+         box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .gallery-page-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    html.dark .gallery-page-item:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    .gallery-page-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        display: block;
+    }
+    
+    /* Pagination Styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .pagination button {
+        margin: 0 0.25rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background-color: var(--card-bg);
+        color: var(--text-color-light);
+        border: 1px solid var(--primary-blue);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .pagination button:hover:not(:disabled) {
+        background-color: var(--primary-blue);
+        color: white;
+    }
+    
+    .pagination button.active {
+        background-color: var(--primary-blue);
+        color: white;
+        font-weight: 600;
+    }
+    
+    .pagination button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .gallery-page {
+        display: none;
+    }
+    
+    .gallery-page.active {
+        display: grid;
+    }
+    
+    /* Loading Indicator */
+    .loading-spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        min-height: 200px;
+    }
+    
+    .loading-spinner::after {
+        content: "";
+        width: 2rem;
+        height: 2rem;
+        border: 4px solid var(--primary-blue);
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spinner 0.6s linear infinite;
+    }
+    
+    @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    /* Video Gallery */
+    .video-section {
+        margin-top: 3rem;
+    }
+    
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        background-color: #000; /* Black background for letter/pillar boxing */
+    }
+    
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    
+    .video-thumbnail {
+        position: relative;
+        cursor: pointer;
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .video-thumbnail:hover {
+        transform: scale(1.03);
+    }
+    
+    .video-thumbnail::after {
+        content: "\f144";
+        font-family: "Font Awesome 5 Free";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+    
+    .video-thumbnail:hover::after {
+        opacity: 1;
+    }
+    
+    /* Error Message */
+    .error-message {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-color-light);
+        background-color: rgba(239, 68, 68, 0.1);
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        color: var(--text-color-light);
+        opacity: 0.5;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <main id="gallery-main" class="py-16 md:py-24 bg-[var(--section-bg-alt)]" role="main" aria-labelledby="gallery-heading">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 id="gallery-heading" class="section-title text-center">Galeri Armada dan Perjalanan</h1>
+            <p class="section-subtitle text-center max-w-2xl mx-auto">
+                Jelajahi koleksi foto-foto kendaraan kami, interior, serta momen-momen tak terlupakan dari perjalanan pelanggan setia CV. Enam Satu Rentalindo.
+            </p>
+            
+            <!-- Gallery Tabs -->
+            <div class="flex justify-center mb-8" role="tablist">
+                <button id="photos-tab" class="px-6 py-2 rounded-l-lg bg-[var(--primary-blue)] text-white font-medium" role="tab" aria-selected="true" aria-controls="photos-panel">
+                    <i class="fas fa-image mr-2" aria-hidden="true"></i>Foto
+                </button>
+                <button id="videos-tab" class="px-6 py-2 rounded-r-lg bg-[var(--section-bg-alt)] border border-[var(--primary-blue)] text-[var(--text-color-light)]" role="tab" aria-selected="false" aria-controls="videos-panel">
+                    <i class="fas fa-video mr-2" aria-hidden="true"></i>Video
+                </button>
+            </div>
+            
+            <!-- Photo Gallery Panel -->
+            <div id="photos-panel" role="tabpanel" aria-labelledby="photos-tab">
+                <div id="photo-gallery-loading" class="loading-spinner" aria-live="polite" aria-busy="true">
+                    <!-- Loading spinner will appear here -->
+                </div>
+                
+                <div id="photo-gallery-error" class="error-message hidden" aria-live="assertive">
+                    <i class="fas fa-exclamation-circle text-red-500 mr-2" aria-hidden="true"></i>
+                    <span>Terjadi kesalahan saat memuat galeri foto. Silakan coba lagi nanti.</span>
+                </div>
+                
+                <div id="photo-gallery-empty" class="empty-state hidden" aria-live="polite">
+                    <i class="fas fa-images" aria-hidden="true"></i>
+                    <p class="text-lg">Belum ada foto yang tersedia saat ini.</p>
+                </div>
+                
+                <!-- Dynamic Photo Gallery Container -->
+                <div id="photo-gallery-container">
+                    <!-- Photo gallery pages will be generated dynamically here -->
+                </div>
+                
+                <!-- Pagination Controls -->
+                <div id="photos-pagination" class="pagination mt-8 hidden" role="navigation" aria-label="Navigasi halaman galeri foto">
+                    <button id="prev-page" class="prev-btn" aria-label="Halaman sebelumnya" disabled>
+                        <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>Sebelumnya
+                    </button>
+                    <!-- Page buttons will be generated dynamically -->
+                    <div id="page-buttons-container" class="flex flex-wrap justify-center"></div>
+                    <button id="next-page" class="next-btn" aria-label="Halaman berikutnya">
+                        Berikutnya<i class="fas fa-chevron-right ml-1" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Video Gallery Panel -->
+            <div id="videos-panel" class="hidden" role="tabpanel" aria-labelledby="videos-tab">
+                <div id="video-gallery-loading" class="loading-spinner" aria-live="polite" aria-busy="true">
+                    <!-- Loading spinner will appear here -->
+                </div>
+                
+                <div id="video-gallery-error" class="error-message hidden" aria-live="assertive">
+                    <i class="fas fa-exclamation-circle text-red-500 mr-2" aria-hidden="true"></i>
+                    <span>Terjadi kesalahan saat memuat galeri video. Silakan coba lagi nanti.</span>
+                </div>
+                
+                <div id="video-gallery-empty" class="empty-state hidden" aria-live="polite">
+                    <i class="fas fa-video" aria-hidden="true"></i>
+                    <p class="text-lg">Belum ada video yang tersedia saat ini.</p>
+                </div>
+                
+                <div id="video-player-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 hidden">
+                    <div class="video-container" role="region" aria-label="Video utama">
+                        <video id="main-video" controls poster="{{ url_for('static', filename='assets/images/placeholder-video.jpg') }}" aria-label="Video armada mobil">
+                            <source src="" type="video/mp4">
+                            Maaf, browser Anda tidak mendukung pemutaran video.
+                        </video>
+                    </div>
+                    
+                    <div class="flex flex-col justify-center">
+                        <h2 class="text-2xl font-bold text-[var(--accent-darker-blue)] mb-4">Kendaraan Kami dalam Aksi</h2>
+                        <p class="text-[var(--text-color-light)] mb-4">
+                            Lihat bagaimana armada mobil kami memberikan pengalaman berkendara yang nyaman dan menyenangkan untuk berbagai kebutuhan perjalanan Anda.
+                        </p>
+                        <p class="text-[var(--text-color-light)]">
+                            Dari kendaraan keluarga hingga mobil premium, semua terawat dengan baik dan siap untuk mengantarkan Anda ke destinasi impian.
+                        </p>
+                    </div>
+                </div>
+                
+                <div id="video-thumbnails-container" class="hidden">
+                    <h3 class="text-xl font-bold text-[var(--accent-darker-blue)] mb-4">Video Lainnya</h3>
+                    
+                    <!-- Dynamic Video Gallery Container -->
+                    <div id="video-gallery-container">
+                        <!-- Video gallery pages will be generated dynamically here -->
+                    </div>
+                    
+                    <!-- Video Pagination Controls -->
+                    <div id="videos-pagination" class="pagination mt-8 hidden" role="navigation" aria-label="Navigasi halaman galeri video">
+                        <button id="video-prev-page" class="prev-btn" aria-label="Halaman video sebelumnya" disabled>
+                            <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>Sebelumnya
+                        </button>
+                        <!-- Page buttons will be generated dynamically -->
+                        <div id="video-page-buttons-container" class="flex flex-wrap justify-center"></div>
+                        <button id="video-next-page" class="next-btn" aria-label="Halaman video berikutnya">
+                            Berikutnya<i class="fas fa-chevron-right ml-1" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+<script>
+    // Lightbox configuration
+    lightbox.option({
+        'resizeDuration': 300,
+        'wrapAround': true,
+        'albumLabel': "Foto %1 dari %2",
+        'fadeDuration': 300,
+        'showImageNumberLabel': true
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuration
+        const IMAGES_PER_PAGE = 9; // Exactly 9 images per page
+        const VIDEOS_PER_PAGE = 8; // Videos per page
+        
+        // Gallery state
+        let galleryImages = [];
+        let galleryVideos = [];
+        let currentPhotoPage = 1;
+        let currentVideoPage = 1;
+        let totalPhotoPages = 0;
+        let totalVideoPages = 0;
+        
+        // Cache DOM elements
+        const photosTab = document.getElementById('photos-tab');
+        const videosTab = document.getElementById('videos-tab');
+        const photosPanel = document.getElementById('photos-panel');
+        const videosPanel = document.getElementById('videos-panel');
+        
+        const photoGalleryLoading = document.getElementById('photo-gallery-loading');
+        const photoGalleryError = document.getElementById('photo-gallery-error');
+        const photoGalleryEmpty = document.getElementById('photo-gallery-empty');
+        const photoGalleryContainer = document.getElementById('photo-gallery-container');
+        const photosPagination = document.getElementById('photos-pagination');
+        const pageButtonsContainer = document.getElementById('page-buttons-container');
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        
+        const videoGalleryLoading = document.getElementById('video-gallery-loading');
+        const videoGalleryError = document.getElementById('video-gallery-error');
+        const videoGalleryEmpty = document.getElementById('video-gallery-empty');
+        const videoPlayerContainer = document.getElementById('video-player-container');
+        const videoThumbnailsContainer = document.getElementById('video-thumbnails-container');
+        const videoGalleryContainer = document.getElementById('video-gallery-container');
+        const videosPagination = document.getElementById('videos-pagination');
+        const videoPageButtonsContainer = document.getElementById('video-page-buttons-container');
+        const videoPrevButton = document.getElementById('video-prev-page');
+        const videoNextButton = document.getElementById('video-next-page');
+        const mainVideo = document.getElementById('main-video');
+        
+        // Function to fetch images from API with pagination
+        async function fetchGalleryImages(page = 1) {
+            try {
+                photoGalleryLoading.classList.remove('hidden');
+                photoGalleryError.classList.add('hidden');
+                photoGalleryEmpty.classList.add('hidden');
+                
+                const response = await fetch(`/api/gallery/images?page=${page}&per_page=${IMAGES_PER_PAGE}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    galleryImages = data.images || [];
+                    totalPhotoPages = data.total_pages || 0;
+                    currentPhotoPage = data.page || 1;
+                    
+                    if (galleryImages.length === 0) {
+                        photoGalleryEmpty.classList.remove('hidden');
+                    } else {
+                        renderPhotoGallery();
+                        photosPagination.classList.remove('hidden');
+                    }
+                } else {
+                    throw new Error(data.error || 'Failed to load images');
+                }
+            } catch (error) {
+                console.error('Error fetching gallery images:', error);
+                photoGalleryError.classList.remove('hidden');
+            } finally {
+                photoGalleryLoading.classList.add('hidden');
+            }
+        }
+        
+        // Function to fetch videos from API with pagination
+        async function fetchGalleryVideos(page = 1) {
+            try {
+                videoGalleryLoading.classList.remove('hidden');
+                videoGalleryError.classList.add('hidden');
+                videoGalleryEmpty.classList.add('hidden');
+                videoPlayerContainer.classList.add('hidden');
+                videoThumbnailsContainer.classList.add('hidden');
+                
+                const response = await fetch(`/api/gallery/videos?page=${page}&per_page=${VIDEOS_PER_PAGE}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    galleryVideos = data.videos || [];
+                    totalVideoPages = data.total_pages || 0;
+                    currentVideoPage = data.page || 1;
+                    
+                    if (galleryVideos.length === 0) {
+                        videoGalleryEmpty.classList.remove('hidden');
+                    } else {
+                        renderVideoGallery();
+                        videoPlayerContainer.classList.remove('hidden');
+                        videoThumbnailsContainer.classList.remove('hidden');
+                        
+                        if (totalVideoPages > 1) {
+                            videosPagination.classList.remove('hidden');
+                        }
+                    }
+                } else {
+                    throw new Error(data.error || 'Failed to load videos');
+                }
+            } catch (error) {
+                console.error('Error fetching gallery videos:', error);
+                videoGalleryError.classList.remove('hidden');
+            } finally {
+                videoGalleryLoading.classList.add('hidden');
+            }
+        }
+        
+        // Render photo gallery
+        function renderPhotoGallery() {
+            // Clear existing content
+            photoGalleryContainer.innerHTML = '';
+            pageButtonsContainer.innerHTML = '';
+            
+            // Create the gallery page
+            const galleryPage = document.createElement('div');
+            galleryPage.className = 'gallery-page active grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6';
+            galleryPage.setAttribute('role', 'list');
+            galleryPage.setAttribute('aria-label', `Galeri foto armada - halaman ${currentPhotoPage}`);
+            
+            // Add images to the page
+            galleryImages.forEach(image => {
+                // Create gallery item
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-page-item';
+                galleryItem.setAttribute('role', 'listitem');
+                
+                // Create link
+                const link = document.createElement('a');
+                link.href = image.path;
+                link.setAttribute('data-lightbox', 'rental-gallery');
+                link.setAttribute('data-title', image.title);
+                
+                // Create image
+                const img = document.createElement('img');
+                img.src = image.path;
+                img.alt = `Foto armada mobil #${image.id}`;
+                img.className = 'w-full';
+                img.setAttribute('loading', 'lazy');
+                img.onerror = function() {
+                    this.src = 'https://fakeimg.pl/400x300/E0E0E0/757575?text=Image+Error&font=Inter';
+                    this.onerror = null;
+                };
+                
+                // Add image to link and link to gallery item
+                link.appendChild(img);
+                galleryItem.appendChild(link);
+                galleryPage.appendChild(galleryItem);
+            });
+            
+            photoGalleryContainer.appendChild(galleryPage);
+            
+            // Create pagination buttons
+            for (let pageNum = 1; pageNum <= totalPhotoPages; pageNum++) {
+                const pageButton = document.createElement('button');
+                pageButton.setAttribute('data-page', pageNum);
+                pageButton.className = `page-btn ${pageNum === currentPhotoPage ? 'active' : ''}`;
+                pageButton.setAttribute('aria-label', `Halaman ${pageNum}`);
+                if (pageNum === currentPhotoPage) {
+                    pageButton.setAttribute('aria-current', 'page');
+                }
+                pageButton.textContent = pageNum;
+                pageButton.addEventListener('click', function() {
+                    goToPhotoPage(pageNum);
+                });
+                
+                pageButtonsContainer.appendChild(pageButton);
+            }
+            
+            // Update navigation buttons
+            updatePhotoNavigationButtons();
+        }
+        
+        // Render video gallery
+        function renderVideoGallery() {
+            // Clear existing content
+            videoGalleryContainer.innerHTML = '';
+            videoPageButtonsContainer.innerHTML = '';
+            
+            if (galleryVideos.length > 0) {
+                // Set first video as main video
+                const firstVideo = galleryVideos[0];
+                mainVideo.querySelector('source').src = firstVideo.path;
+                
+                // Set poster from thumbnail if available
+                if (firstVideo.thumbnail) {
+                    mainVideo.setAttribute('poster', firstVideo.thumbnail);
+                }
+                
+                mainVideo.load();
+                
+                // Create the video gallery page
+                const videoPage = document.createElement('div');
+                videoPage.className = 'gallery-page active grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4';
+                videoPage.setAttribute('role', 'list');
+                videoPage.setAttribute('aria-label', `Galeri video armada - halaman ${currentVideoPage}`);
+                
+                // Add videos to the page
+                galleryVideos.forEach(video => {
+                    const thumbnailItem = document.createElement('div');
+                    thumbnailItem.className = 'video-thumbnail';
+                    thumbnailItem.setAttribute('role', 'listitem');
+                    thumbnailItem.setAttribute('data-video', video.path);
+                    thumbnailItem.setAttribute('data-title', video.title);
+                    thumbnailItem.setAttribute('tabindex', '0');
+                    thumbnailItem.setAttribute('aria-label', `${video.title} - Klik untuk memutar`);
+                    
+                    // Create image for thumbnail
+                    const img = document.createElement('img');
+                    // Use the video thumbnail if available, otherwise use a placeholder
+                    img.src = video.thumbnail || 'https://fakeimg.pl/400x300/333333/FFFFFF?text=Video&font=Inter';
+                    img.alt = `Thumbnail untuk ${video.title}`;
+                    img.className = 'w-full h-auto aspect-video object-cover';
+                    img.onerror = function() {
+                        this.src = 'https://fakeimg.pl/400x300/333333/FFFFFF?text=Video+Error&font=Inter';
+                        this.onerror = null;
+                    };
+                    
+                    thumbnailItem.appendChild(img);
+                    videoPage.appendChild(thumbnailItem);
+                    
+                    // Add click event to play video
+                    thumbnailItem.addEventListener('click', function() {
+                        playVideo(video.path, video.title, video.thumbnail);
+                    });
+                    
+                    // Add keyboard accessibility
+                    thumbnailItem.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+                });
+                
+                videoGalleryContainer.appendChild(videoPage);
+                
+                // Create pagination buttons for videos
+                if (totalVideoPages > 1) {
+                    for (let pageNum = 1; pageNum <= totalVideoPages; pageNum++) {
+                        const pageButton = document.createElement('button');
+                        pageButton.setAttribute('data-page', pageNum);
+                        pageButton.className = `page-btn ${pageNum === currentVideoPage ? 'active' : ''}`;
+                        pageButton.setAttribute('aria-label', `Halaman video ${pageNum}`);
+                        if (pageNum === currentVideoPage) {
+                            pageButton.setAttribute('aria-current', 'page');
+                        }
+                        pageButton.textContent = pageNum;
+                        pageButton.addEventListener('click', function() {
+                            goToVideoPage(pageNum);
+                        });
+                        
+                        videoPageButtonsContainer.appendChild(pageButton);
+                    }
+                }
+                
+                // Update video navigation buttons
+                updateVideoNavigationButtons();
+            }
+        }
+        
+        // Function to play a video
+        function playVideo(videoPath, videoTitle, thumbnailPath) {
+            mainVideo.querySelector('source').src = videoPath;
+            
+            // Set thumbnail as poster if available
+            if (thumbnailPath) {
+                mainVideo.setAttribute('poster', thumbnailPath);
+            }
+            
+            mainVideo.load();
+            mainVideo.play();
+            
+            // Announce to screen readers
+            const announcer = document.createElement('div');
+            announcer.className = 'sr-only';
+            announcer.setAttribute('aria-live', 'polite');
+            announcer.textContent = `Memutar ${videoTitle}`;
+            document.body.appendChild(announcer);
+            setTimeout(() => document.body.removeChild(announcer), 1000);
+            
+            // Scroll to main video
+            videoPlayerContainer.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Function to change photo page
+        function goToPhotoPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPhotoPages) return;
+            
+            // Load the new page from API
+            fetchGalleryImages(pageNum);
+            
+            // Scroll to top of gallery
+            document.getElementById('gallery-heading').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Function to change video page
+        function goToVideoPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalVideoPages) return;
+            
+            // Load the new page from API
+            fetchGalleryVideos(pageNum);
+        }
+        
+        // Update photo navigation buttons state
+        function updatePhotoNavigationButtons() {
+            prevButton.disabled = currentPhotoPage === 1;
+            nextButton.disabled = currentPhotoPage === totalPhotoPages;
+        }
+        
+        // Update video navigation buttons state
+        function updateVideoNavigationButtons() {
+            videoPrevButton.disabled = currentVideoPage === 1;
+            videoNextButton.disabled = currentVideoPage === totalVideoPages;
+        }
+        
+        // Add click events to photo navigation buttons
+        prevButton.addEventListener('click', function() {
+            if (!this.disabled && currentPhotoPage > 1) {
+                goToPhotoPage(currentPhotoPage - 1);
+            }
+        });
+        
+        nextButton.addEventListener('click', function() {
+            if (!this.disabled && currentPhotoPage < totalPhotoPages) {
+                goToPhotoPage(currentPhotoPage + 1);
+            }
+        });
+        
+        // Add click events to video navigation buttons
+        videoPrevButton.addEventListener('click', function() {
+            if (!this.disabled && currentVideoPage > 1) {
+                goToVideoPage(currentVideoPage - 1);
+            }
+        });
+        
+        videoNextButton.addEventListener('click', function() {
+            if (!this.disabled && currentVideoPage < totalVideoPages) {
+                goToVideoPage(currentVideoPage + 1);
+            }
+        });
+        
+        // Tab switching functionality
+        photosTab.addEventListener('click', function() {
+            // Activate photos tab
+            photosTab.classList.add('bg-[var(--primary-blue)]', 'text-white');
+            photosTab.classList.remove('bg-[var(--section-bg-alt)]', 'text-[var(--text-color-light)]');
+            photosTab.setAttribute('aria-selected', 'true');
+            
+            // Deactivate videos tab
+            videosTab.classList.remove('bg-[var(--primary-blue)]', 'text-white');
+            videosTab.classList.add('bg-[var(--section-bg-alt)]', 'text-[var(--text-color-light)]');
+            videosTab.setAttribute('aria-selected', 'false');
+            
+            // Show photos panel, hide videos panel
+            photosPanel.classList.remove('hidden');
+            videosPanel.classList.add('hidden');
+            photosPanel.setAttribute('aria-hidden', 'false');
+            videosPanel.setAttribute('aria-hidden', 'true');
+            
+            // Pause video if playing
+            if (mainVideo) mainVideo.pause();
+        });
+        
+        videosTab.addEventListener('click', function() {
+            // Activate videos tab
+            videosTab.classList.add('bg-[var(--primary-blue)]', 'text-white');
+            videosTab.classList.remove('bg-[var(--section-bg-alt)]', 'text-[var(--text-color-light)]');
+            videosTab.setAttribute('aria-selected', 'true');
+            
+            // Deactivate photos tab
+            photosTab.classList.remove('bg-[var(--primary-blue)]', 'text-white');
+            photosTab.classList.add('bg-[var(--section-bg-alt)]', 'text-[var(--text-color-light)]');
+            photosTab.setAttribute('aria-selected', 'false');
+            
+            // Show videos panel, hide photos panel
+            videosPanel.classList.remove('hidden');
+            photosPanel.classList.add('hidden');
+            videosPanel.setAttribute('aria-hidden', 'false');
+            photosPanel.setAttribute('aria-hidden', 'true');
+            
+            // Load videos if not already loaded
+            if (galleryVideos.length === 0) {
+                fetchGalleryVideos();
+            }
+        });
+        
+        // Add keyboard accessibility for tabs
+        [photosTab, videosTab].forEach(tab => {
+            tab.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // Load images on page load
+        fetchGalleryImages();
+    });
+</script>
+{% endblock %} 

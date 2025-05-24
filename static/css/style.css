@@ -1,0 +1,368 @@
+:root {
+    /* Light Mode Colors - Blue Theme */
+    --primary-blue: #0B57D0;
+    --primary-blue-light: #42A5F5; /* Lighter blue for animation */
+    --text-on-blue: #FFFFFF;
+    --accent-darker-blue: #000033;
+    --text-color-normal: #374151;
+    --text-color-light: #6B7280;
+    --page-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --form-input-bg: #ffffff;
+    --form-input-border: #D1D5DB;
+    --btn-secondary-bg: #e0e0e0;
+    --btn-secondary-text: #212121;
+    --hero-gradient-start: #E8F0FE;
+    --hero-gradient-end: #D3E3FD;
+    --section-bg-alt: #E8F0FE;
+    --contact-section-bg: var(--card-bg);
+    --footer-bg-color: var(--accent-darker-blue);
+    --footer-text-color: #9CA3AF;
+    --footer-link-hover-color: var(--primary-blue);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+    --modal-content-bg: var(--card-bg);
+    --modal-close-btn-color: var(--text-color-light);
+
+    /* Navbar specific for light mode */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --nav-blur: blur(8px);
+    --nav-link-text-color: var(--accent-darker-blue);
+    --nav-link-hover-active-bg: var(--primary-blue);
+    --nav-link-hover-active-text: var(--text-on-blue);
+    --theme-switcher-color: var(--accent-darker-blue);
+    --theme-switcher-hover-bg: #E8F0FE;
+    --theme-switcher-hover-text: var(--primary-blue);
+
+    /* New Car Card - Light Theme Defaults */
+    --car-card-new-bg: var(--card-bg);
+    --car-card-new-text: var(--text-color-normal);
+    --car-card-theme-accent-color: var(--primary-blue);
+    --car-card-new-img-container-bg: #F3F4F6;
+    --car-card-new-info-label-color: #4B5563;
+    --car-card-new-button-bg: var(--primary-blue);
+    --car-card-new-button-text: var(--text-on-blue);
+}
+
+html.dark {
+    /* Dark Mode Colors - Blue Theme */
+    --primary-blue: #0B57D0;
+    --primary-blue-light: #64B5F6; /* Lighter blue for animation in dark mode */
+    --text-on-blue: #FFFFFF;
+    --accent-darker-blue: #E0E0E0;
+    --text-color-normal: #E0E0E0;
+    --text-color-light: #9E9E9E;
+    --page-bg: #121212;
+    --card-bg: #1E1E1E;
+    --form-input-bg: #2C2C2C;
+    --form-input-border: #424242;
+    --btn-secondary-bg: #333333;
+    --btn-secondary-text: var(--text-color-normal);
+    --hero-gradient-start: #1E293B;
+    --hero-gradient-end: #0F172A;
+    --section-bg-alt: #1A1A1A;
+    --contact-section-bg: var(--card-bg);
+    --footer-bg-color: #0A0A0A;
+    --footer-text-color: #757575;
+    --footer-link-hover-color: var(--primary-blue);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.75);
+    --modal-content-bg: var(--card-bg);
+    --modal-close-btn-color: var(--text-color-light);
+
+    /* Navbar specific for dark mode */
+    --nav-bg: #1F2937;
+    --nav-blur: none;
+    --nav-link-text-color: #E5E7EB;
+    --nav-link-hover-active-bg: var(--primary-blue);
+    --nav-link-hover-active-text: var(--text-on-blue);
+    --theme-switcher-color: #E5E7EB;
+    --theme-switcher-hover-bg: rgba(11, 87, 208, 0.2);
+    --theme-switcher-hover-text: var(--primary-blue);
+
+    /* New Car Card - Dark Theme Overrides */
+    --car-card-new-bg: #1C1C1E;
+    --car-card-new-text: #F5F5F5;
+    --car-card-theme-accent-color: #DAA520; /* Gold accent for dark mode cards */
+    --car-card-new-img-container-bg: #2A2A2E;
+    --car-card-new-info-label-color: #AAAAAA;
+    --car-card-new-button-bg: var(--primary-blue);
+    --car-card-new-button-text: var(--text-on-blue);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-color-normal);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* New Car Card Style */
+.car-card-new {
+    background-color: var(--car-card-new-bg);
+    color: var(--car-card-new-text);
+    border-radius: 0.75rem; /* 12px */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+html.dark .car-card-new {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.car-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+html.dark .car-card-new:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+.car-card-new .img-container {
+    background-color: var(--car-card-new-img-container-bg);
+    padding: 1rem; /* 16px */
+    transition: background-color 0.3s ease;
+}
+.car-card-new img {
+    border-radius: 0.5rem; /* 8px */
+    width: 100%;
+    height: 14rem; /* 224px */
+    object-fit: cover;
+}
+.car-card-new .card-content {
+    padding: 1rem; /* 16px */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.car-card-new .car-name {
+    color: var(--car-card-theme-accent-color);
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    margin-bottom: 0.5rem; /* 8px */
+    text-align: center;
+    transition: color 0.3s ease;
+}
+.car-card-new .car-info {
+    font-size: 0.875rem; /* 14px */
+    margin-bottom: 0.375rem; /* 6px */
+    color: var(--car-card-new-text);
+}
+.car-card-new .car-info strong {
+    font-weight: 600;
+    color: var(--car-card-new-info-label-color);
+}
+.car-card-new .price {
+    color: var(--car-card-theme-accent-color);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    margin-top: 0.75rem; /* 12px */
+    margin-bottom: 1rem; /* 16px */
+    text-align: center;
+    transition: color 0.3s ease;
+}
+.car-card-new .btn-booking {
+    background-color: var(--car-card-new-button-bg);
+    color: var(--car-card-new-button-text);
+    width: 100%;
+    padding: 0.75rem; /* 12px */
+    border-radius: 1.5rem; /* 24px */
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.car-card-new .btn-booking i {
+    margin-right: 0.5rem; /* 8px */
+}
+.car-card-new .btn-booking:hover {
+    background-color: #0A4CB7; /* Darker primary blue */
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--text-on-blue);
+    border-radius: 1.5rem; /* 24px */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0A4CB7; /* Darker primary blue */
+}
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border-radius: 1.5rem; /* 24px */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Added for proper link styling */
+    text-decoration: none; /* Added for proper link styling */
+}
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+html.dark .btn-secondary:hover {
+    background-color: #424242;
+}
+
+nav {
+    background-color: var(--nav-bg);
+    backdrop-filter: var(--nav-blur);
+    -webkit-backdrop-filter: var(--nav-blur);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.3s ease;
+}
+.nav-link {
+    color: var(--nav-link-text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem; /* 8px 16px */
+    border-radius: 1.5rem; /* 24px */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nav-link:hover,
+.active-nav-link {
+    background-color: var(--nav-link-hover-active-bg) !important;
+    color: var(--nav-link-hover-active-text) !important;
+}
+.active-nav-link {
+     font-weight: 600;
+}
+
+.form-input, .form-select {
+    background-color: var(--form-input-bg);
+    border: 1px solid var(--form-input-border);
+    color: var(--text-color-normal);
+    border-radius: 0.75rem; /* 12px */
+    padding: 0.75rem 1rem; /* 12px 16px */
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.form-input::placeholder, .form-select::placeholder {
+    color: var(--text-color-light);
+}
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(11, 87, 208, 0.2);
+}
+.section-title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: var(--accent-darker-blue);
+    margin-bottom: 1rem; /* 16px */
+    transition: color 0.3s ease;
+}
+html.dark .section-title {
+    color: var(--text-color-normal);
+}
+.section-subtitle {
+    font-size: 1.125rem; /* 18px */
+    color: var(--text-color-light);
+    margin-bottom: 2.5rem; /* 40px */
+    transition: color 0.3s ease;
+}
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: whatsappPulseWilder 1.5s infinite ease-in-out;
+    transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    animation-play-state: paused;
+}
+
+@keyframes whatsappPulseWilder {
+    0% { transform: scale(1) rotate(0deg); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(5deg); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    75% { transform: scale(1.1) rotate(-2deg); }
+    100% { transform: scale(1) rotate(0deg); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+}
+.gallery-img-container {
+    border-radius: 1rem; /* 16px */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+.logo-text-main { color: var(--primary-blue); }
+.logo-text-secondary { color: var(--nav-link-text-color); transition: color 0.3s ease; }
+.hero-gradient { background-image: linear-gradient(to bottom right, var(--hero-gradient-start), var(--hero-gradient-end)); transition: background 0.3s ease; }
+.footer-bg { background-color: var(--footer-bg-color); transition: background-color 0.3s ease; }
+.service-item {
+    background-color: var(--card-bg);
+    border-radius: 1rem; /* 16px */
+    padding: 1.5rem; /* 24px */
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.service-item:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+.service-item i { color: var(--primary-blue); margin-bottom: 0.75rem; /* 12px */ }
+.service-item h3 { color: var(--accent-darker-blue); font-weight: 600; font-size: 1.125rem; /* 18px */ transition: color 0.3s ease; }
+html.dark .service-item h3 { color: var(--text-color-normal); }
+.contact-info-item { display: flex; align-items: center; margin-bottom: 1rem; /* 16px */ font-size: 1.125rem; /* 18px */ color: var(--text-color-normal); transition: color 0.3s ease; }
+.contact-info-item i { color: var(--primary-blue); margin-right: 1rem; /* 16px */ width: 24px; text-align: center; }
+.contact-info-item a { transition: color 0.3s ease; }
+.contact-info-item a:hover { color: var(--primary-blue); }
+.contact-info-item a:hover { color: var(--primary-blue); }
+.contact-map iframe { border-radius: 1rem; /* 16px */ box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.theme-switcher { background: none; border: none; color: var(--theme-switcher-color); cursor: pointer; padding: 0.5rem; /* 8px */ border-radius: 0.5rem; /* 8px */ transition: color 0.2s ease, background-color 0.2s ease; }
+.theme-switcher:hover { color: var(--theme-switcher-hover-text); background-color: var(--theme-switcher-hover-bg); }
+#how-it-works, #gallery { background-color: var(--section-bg-alt); transition: background-color 0.3s ease; }
+#hubungi-kami { background-color: var(--contact-section-bg); transition: background-color 0.3s ease; }
+#mobile-menu { background-color: var(--card-bg); transition: background-color 0.3s ease; }
+
+.modal-hidden { display: none; }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay-bg); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background-color: var(--modal-content-bg); padding: 2rem; /* 32px */ border-radius: 1.5rem; /* 24px */ box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; max-width: 90%; width: 600px; transform: scale(0.95); transition: background-color 0.3s ease, transform 0.3s ease; }
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-close-btn { position: absolute; top: 1rem; /* 16px */ right: 1rem; /* 16px */ background: none; border: none; font-size: 1.5rem; /* 24px */ cursor: pointer; color: var(--modal-close-btn-color); transition: color 0.2s ease; }
+.modal-close-btn:hover { color: var(--primary-blue); }
+.car-card-hidden { display: none !important; }
+/* Hero Text Animation */
+.hero-title-animated { animation: heroTextBreathe 3s ease-in-out infinite; color: var(--primary-blue); }
+@keyframes heroTextBreathe {
+    0%, 100% { color: var(--primary-blue); text-shadow: 0 0 5px rgba(11, 87, 208, 0.2), 0 0 10px rgba(11, 87, 208, 0.1); }
+    50% { color: var(--primary-blue-light); text-shadow: 0 0 15px rgba(11, 87, 208, 0.4), 0 0 25px rgba(11, 87, 208, 0.2); }
+}
+html.dark .hero-title-animated { animation: heroTextBreatheDark 3s ease-in-out infinite; color: var(--primary-blue); }
+@keyframes heroTextBreatheDark {
+    0%, 100% { color: var(--primary-blue); text-shadow: 0 0 8px rgba(11, 87, 208, 0.4), 0 0 15px rgba(11, 87, 208, 0.2); }
+    50% { color: var(--primary-blue-light); text-shadow: 0 0 20px rgba(11, 87, 208, 0.6), 0 0 35px rgba(11, 87, 208, 0.4); }
+}
+/* Back to Top Button */
+#back-to-top-btn {
+    position: fixed; bottom: 40px; left: 40px; /* Moved to left */ width: 50px; height: 50px;
+    background-color: var(--primary-blue); color: var(--text-on-blue); border: none; border-radius: 50%;
+    display: none; justify-content: center; align-items: center; font-size: 1.25rem; /* 20px */
+    cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 999;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+#back-to-top-btn:hover { background-color: #0A4CB7; /* Darker primary blue */ }
+html.dark #back-to-top-btn { background-color: var(--primary-blue); }
+html.dark #back-to-top-btn:hover { background-color: #0A4CB7; /* Darker primary blue */ } 

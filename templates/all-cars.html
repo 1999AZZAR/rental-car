@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Mobil Rental Lengkap di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block meta_title %}Daftar Mobil Rental Lengkap di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block meta_description %}Jelajahi koleksi lengkap armada mobil kami di Palu. Avanza, Fortuner, Alphard, Innova, dan banyak pilihan lainnya dengan harga terjangkau. Tersedia sewa lepas kunci dan dengan sopir.{% endblock %}
+{% block meta_keywords %}rental mobil palu, sewa mobil palu, daftar mobil rental palu, armada rental mobil palu, avanza rental palu, fortuner rental palu, alphard rental palu, innova rental palu, mobil rental murah palu, rental mobil lepas kunci palu{% endblock %}
+{% block og_title %}Daftar Lengkap Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block og_description %}Jelajahi koleksi lengkap armada mobil kami di Palu. Avanza, Fortuner, Alphard, Innova, dan banyak pilihan lainnya dengan harga terjangkau. Tersedia sewa lepas kunci dan dengan sopir.{% endblock %}
+{% block twitter_title %}Daftar Lengkap Mobil Rental di Palu - CV. Enam Satu Rentalindo{% endblock %}
+{% block twitter_description %}Jelajahi koleksi lengkap armada mobil kami di Palu. Avanza, Fortuner, Alphard, Innova, dan banyak pilihan lainnya dengan harga terjangkau.{% endblock %}
+
+{% block nav_cars %}active-nav-link{% endblock %}
+{% block mobile_nav_cars %}active-nav-link{% endblock %}
+{% block aria_current_cars %}page{% endblock %}
+{% block mobile_aria_current_cars %}page{% endblock %}
+
+{% block content %}
+    <section class="py-16 md:py-24" aria-labelledby="cars-list-heading">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="cars-list-heading" class="section-title text-center">Daftar Lengkap Mobil Kami</h2>
+            <p class="section-subtitle text-center max-w-2xl mx-auto">
+                Temukan berbagai pilihan kendaraan kami untuk memenuhi kebutuhan perjalanan Anda. Dari mobil keluarga hingga kendaraan premium, kami memiliki yang Anda butuhkan.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" role="list" aria-label="Daftar mobil yang tersedia">
+                <!-- Mobil 1 - Hilux 4x4 Dcab -->
+                <div class="car-card-new" role="article" aria-labelledby="car-hilux">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/hilux.jpg') }}" alt="Hilux 4x4 Dcab" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E0E0E0/757575?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-hilux" class="car-name">HILUX 4X4 DCAB</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 5 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Hilux 4x4 Dcab" aria-haspopup="dialog">
+                            <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 2 - Fortuner -->
+                <div class="car-card-new" role="article" aria-labelledby="car-fortuner">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/fortuner.jpg') }}" alt="Fortuner GR Sport" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/333333/FFFFFF?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-fortuner" class="car-name">FORTUNER GR SPORT</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Fortuner GR sport" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 3 - Avanza -->
+                <div class="car-card-new" role="article" aria-labelledby="car-avanza">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/all_new_avanza.jpg') }}" alt="Avanza FWD" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E0E0E0/757575?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-avanza" class="car-name">AVANZA FWD</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Avanza FWD" aria-haspopup="dialog">
+                            <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 4 - Xenia -->
+                <div class="car-card-new" role="article" aria-labelledby="car-xenia">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/xenia.jpg') }}" alt="Xenia FWD" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/FFC107/333333?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-xenia" class="car-name">XENIA FWD</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Xenia FWD" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 5 - Terios -->
+                <div class="car-card-new" role="article" aria-labelledby="car-terios">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/new_terios.jpg') }}" alt="Terios All New" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E0E0E0/424242?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-terios" class="car-name">TERIOS ALL NEW</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Terios All new" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 6 - Innova Reborn -->
+                <div class="car-card-new" role="article" aria-labelledby="car-innova-reborn">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/innova_reborn.jpg') }}" alt="Innova Reborn" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E1F5FE/0277BD?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-innova-reborn" class="car-name">INNOVA REBORN</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Innova Reborn" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 7 - Agya -->
+                <div class="car-card-new" role="article" aria-labelledby="car-agya">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/agya.jpg') }}" alt="Agya GR Sport" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/BBDEFB/1565C0?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-agya" class="car-name">AGYA GR SPORT</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 4-5 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Agya GR sport" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 8 - Ayla -->
+                <div class="car-card-new" role="article" aria-labelledby="car-ayla">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/alya.jpg') }}" alt="Ayla All New" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/FFF8E1/5D4037?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-ayla" class="car-name">AYLA ALL NEW</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 4-5 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Ayla All new" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 9 - Honda Brio -->
+                <div class="car-card-new" role="article" aria-labelledby="car-brio">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/brio_satya.jpg') }}" alt="Honda Brio" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/F3F4F6/1F2937?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-brio" class="car-name">HONDA BRIO</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 4-5 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Honda brio" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 10 - Innova Zenix -->
+                <div class="car-card-new" role="article" aria-labelledby="car-zenix">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/innova_zenix.jpg') }}" alt="Innova Zenix" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/CDCDCD/333333?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-zenix" class="car-name">INNOVA ZENIX</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Innova Zenix" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 11 - Pajero Sport -->
+                <div class="car-card-new" role="article" aria-labelledby="car-pajero">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/pajero_sport.jpg') }}" alt="Pajero Sport" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/555555/FFFFFF?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-pajero" class="car-name">PAJERO SPORT</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Pajero Sport" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 12 - Toyota Alphard -->
+                <div class="car-card-new" role="article" aria-labelledby="car-alphard">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/alphard.jpg') }}" alt="Toyota Alphard" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/111111/EEEEEE?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-alphard" class="car-name">TOYOTA ALPHARD</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 6-7 Penumpang (Premium)</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> Sesuai Kebutuhan</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver (Premium)</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Toyota Alphard" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 13 - Toyota Hiace -->
+                <div class="car-card-new" role="article" aria-labelledby="car-hiace">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/hiace_premio.jpg') }}" alt="Toyota Hiace" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/F3E5F5/6A1B9A?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-hiace" class="car-name">TOYOTA HIACE</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 10-14 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Toyota Hiace" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 14 - Mitsubishi Xpander -->
+                <div class="car-card-new" role="article" aria-labelledby="car-xpander">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/xpander.jpg') }}" alt="Mitsubishi Xpander" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E8F5E9/2E7D32?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-xpander" class="car-name">MITSUBISHI XPANDER</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 7 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Lepas Kunci & Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Mitsubishi Xpander" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 15 - Honda Civic -->
+                <div class="car-card-new" role="article" aria-labelledby="car-civic">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/civic.jpg') }}" alt="Honda Civic" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/FAFAFA/616161?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-civic" class="car-name">HONDA CIVIC</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 5 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> 24 Jam/Hari</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Honda Civic" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobil 16 - Elf Pariwisata -->
+                <div class="car-card-new" role="article" aria-labelledby="car-elf">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='assets/cars/elf.jpg') }}" alt="Elf Pariwisata" class="w-full h-56 object-cover" onerror="this.src='https://fakeimg.pl/600x400/E8EAF6/303F9F?text=Image+Not+Found&font=Inter'; this.onerror=null;">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="car-elf" class="car-name">ELF PARIWISATA</h3>
+                        <p class="car-info"><strong>Kapasitas:</strong> 15-20 Penumpang</p>
+                        <p class="car-info"><strong>Durasi Rental:</strong> Sesuai Kebutuhan</p>
+                        <p class="car-info"><strong>Jenis Sewa:</strong> Dengan Driver Profesional</p>
+                        <p class="price">Negotiable/Hari</p>
+                        <button class="btn-booking open-booking-modal-card" data-car-type="Elf Pariwisata" aria-haspopup="dialog">
+                             <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>BOOKING SEKARANG
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center py-8 bg-[var(--section-bg-alt)] rounded-2xl p-6 md:p-10 max-w-3xl mx-auto" role="complementary" aria-labelledby="special-request-heading">
+                <h3 id="special-request-heading" class="text-2xl font-bold text-[var(--accent-darker-blue)] mb-4">Butuh Mobil Khusus?</h3>
+                <p class="text-[var(--text-color-light)] mb-6">
+                    Jika Anda memerlukan mobil atau kendaraan jenis lain yang tidak tercantum di halaman ini, jangan ragu untuk menghubungi kami. Kami akan berusaha memenuhi kebutuhan Anda.
+                </p>
+                <a href="https://wa.me/6282311113616?text=Halo%20CV.%20Enam%20Satu%20Rentalindo,%20saya%20ingin%20menanyakan%20tentang%20ketersediaan%20mobil%20khusus." class="btn-primary inline-flex items-center" target="_blank" rel="noopener" role="button" aria-label="Hubungi kami via WhatsApp untuk permintaan khusus">
+                    <i class="fab fa-whatsapp mr-2 text-lg" aria-hidden="true"></i>
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %} 

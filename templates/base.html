@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>{% block title %}CV. Enam Satu Rentalindo{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}CV. Enam Satu Rentalindo - Rental Mobil Terpercaya di Palu{% endblock %}">
+    <meta name="description" content="{% block meta_description %}Rental mobil terbaik di Palu, Sulawesi Tengah. Menyediakan berbagai jenis kendaraan dengan harga terjangkau. Layanan lepas kunci, dengan sopir, dan sewa mobil premium.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}rental mobil palu, sewa mobil palu, rental mobil sulawesi tengah, sewa mobil dengan sopir, rental mobil lepas kunci, sewa mobil premium palu, rental avanza palu, sewa fortuner palu, jasa transportasi palu{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="author" content="CV. Enam Satu Rentalindo">
+    <meta name="geo.region" content="ID-ST">
+    <meta name="geo.placename" content="Palu">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical_url %}https://enamsaturentalindo.com{{ request.path }}{% endblock %}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}https://enamsaturentalindo.com{{ request.path }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}CV. Enam Satu Rentalindo - Rental Mobil Terpercaya di Palu{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Rental mobil terbaik di Palu, Sulawesi Tengah. Menyediakan berbagai jenis kendaraan dengan harga terjangkau. Layanan lepas kunci, dengan sopir, dan sewa mobil premium.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://enamsaturentalindo.com/static/images/og-image.jpg{% endblock %}">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="CV. Enam Satu Rentalindo">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{% block twitter_url %}https://enamsaturentalindo.com{{ request.path }}{% endblock %}">
+    <meta property="twitter:title" content="{% block twitter_title %}CV. Enam Satu Rentalindo - Rental Mobil Terpercaya di Palu{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}Rental mobil terbaik di Palu, Sulawesi Tengah. Menyediakan berbagai jenis kendaraan dengan harga terjangkau. Layanan lepas kunci, dengan sopir, dan sewa mobil premium.{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}https://enamsaturentalindo.com/static/images/twitter-image.jpg{% endblock %}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-container {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color-light);
+            transition: color 0.2s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-blue);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color-light);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--input-bg);
+            color: var(--text-color-light);
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--input-bg);
+            color: var(--text-color-light);
+            transition: border-color 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--input-bg);
+            color: var(--text-color-light);
+            transition: border-color 0.2s ease;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #25D366;
+            color: white;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            background-color: #128C7E;
+        }
+        
+        .required-field::after {
+            content: "*";
+            color: #EF4444;
+            margin-left: 0.25rem;
+        }
+        
+        .input-error {
+            border-color: #EF4444 !important;
+        }
+        
+        .error-message {
+            color: #EF4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "CV. Enam Satu Rentalindo",
+        "image": "https://enamsaturentalindo.com/static/images/logo.jpg",
+        "@id": "https://enamsaturentalindo.com",
+        "url": "https://enamsaturentalindo.com",
+        "telephone": "+6282311113616",
+        "priceRange": "Rp300.000 - Rp1.500.000",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Prof. Moh. Yamin No.38b, Birobuli Utara",
+            "addressLocality": "Palu",
+            "addressRegion": "Sulawesi Tengah",
+            "postalCode": "94111",
+            "addressCountry": "ID"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -0.9000089992949227,
+            "longitude": 119.8801393152679
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "opens": "08:00",
+            "closes": "20:00"
+        },
+        "sameAs": [
+            "https://www.tiktok.com/@black.canyon.transport?_t=ZS-8wbKj0Shr2G&_r=1",
+            "https://www.instagram.com/blackcanyon.ind?igsh=MTRlbmpsbzNvd2Uzeg=="
+        ]
+    }
+    </script>
+</head>
+<body class="text-gray-800">
+
+    <nav role="navigation" aria-label="Navigasi utama situs">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="{{ url_for('index') }}" class="text-xl font-bold" aria-label="Kembali ke beranda">
+                        <span class="logo-text-main">CV. Enam Satu</span>
+                        <span class="logo-text-secondary">Rentalindo</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="{{ url_for('index') }}#home" class="nav-link {% block nav_home %}{% endblock %}" aria-current="{% block aria_current_home %}false{% endblock %}">Beranda</a>
+                    <a href="{{ url_for('all_cars') }}" class="nav-link {% block nav_cars %}{% endblock %}" aria-current="{% block aria_current_cars %}false{% endblock %}">Mobil Kami</a>
+                    <a href="{{ url_for('index') }}#how-it-works" class="nav-link {% block nav_how %}{% endblock %}" aria-current="{% block aria_current_how %}false{% endblock %}">Cara Kerja</a>
+                    <a href="{{ url_for('index') }}#services" class="nav-link {% block nav_services %}{% endblock %}" aria-current="{% block aria_current_services %}false{% endblock %}">Layanan</a>
+                    <a href="{{ url_for('gallery') }}" class="nav-link {% block nav_gallery %}{% endblock %}" aria-current="{% block aria_current_gallery %}false{% endblock %}">Galeri</a>
+                    <a href="{{ url_for('index') }}#hubungi-kami" class="nav-link {% block nav_contact %}{% endblock %}" aria-current="{% block aria_current_contact %}false{% endblock %}">Kontak</a>
+                    <button id="theme-switcher-desktop" class="theme-switcher ml-2" aria-label="Ganti tema" aria-pressed="false" role="switch">
+                        <i class="fas fa-moon fa-lg"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="theme-switcher-mobile-btn" class="theme-switcher mr-2" aria-label="Ganti tema" aria-pressed="false" role="switch">
+                         <i class="fas fa-moon fa-lg"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="text-[var(--nav-link-text-color)] hover:text-[var(--primary-blue)] focus:outline-none" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden shadow-lg py-2" aria-labelledby="mobile-menu-button" role="menu">
+            <a href="{{ url_for('index') }}#home" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_home %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_home %}false{% endblock %}">Beranda</a>
+            <a href="{{ url_for('all_cars') }}" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_cars %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_cars %}false{% endblock %}">Mobil Kami</a>
+            <a href="{{ url_for('index') }}#how-it-works" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_how %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_how %}false{% endblock %}">Cara Kerja</a>
+            <a href="{{ url_for('index') }}#services" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_services %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_services %}false{% endblock %}">Layanan</a>
+            <a href="{{ url_for('gallery') }}" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_gallery %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_gallery %}false{% endblock %}">Galeri</a>
+            <a href="{{ url_for('index') }}#hubungi-kami" class="block nav-link text-center mx-2 my-1 {% block mobile_nav_contact %}{% endblock %}" role="menuitem" aria-current="{% block mobile_aria_current_contact %}false{% endblock %}">Kontak</a>
+        </div>
+    </nav>
+
+    {% block booking_modal %}
+    <div id="booking-modal" class="modal-overlay" role="dialog" aria-labelledby="booking-modal-title" aria-modal="true">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="booking-modal-title" class="text-xl font-bold text-[var(--primary-blue)]">Formulir Pemesanan</h3>
+                <button id="close-booking-modal" class="modal-close" aria-label="Tutup formulir">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name" class="form-label required-field">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                    <span id="name-error" class="error-message hidden"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label required-field">Nomor Telepon/WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                    <span id="phone-error" class="error-message hidden"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="car-type" class="form-label required-field">Jenis Mobil</label>
+                    <select id="car-type" name="car-type" class="form-select" required>
+                        <option value="" selected disabled>Pilih Jenis Mobil</option>
+                        <option value="Avanza FWD">Avanza FWD</option>
+                        <option value="Fortuner GR Sport">Fortuner GR Sport</option>
+                        <option value="Toyota Alphard">Toyota Alphard</option>
+                        <option value="Honda Brio">Honda Brio</option>
+                        <option value="Innova Zenix">Innova Zenix</option>
+                        <option value="Pajero Sport">Pajero Sport</option>
+                        <option value="Hilux 4x4 Dcab">Hilux 4x4 Dcab</option>
+                        <option value="Xenia FWD">Xenia FWD</option>
+                        <option value="Terios All new">Terios All new</option>
+                        <option value="Innova Reborn">Innova Reborn</option>
+                        <option value="Agya GR sport">Agya GR sport</option>
+                        <option value="Ayla All new">Ayla All new</option>
+                        <option value="Toyota Hiace">Toyota Hiace</option>
+                        <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
+                        <option value="Honda Civic">Honda Civic</option>
+                        <option value="Elf Pariwisata">Elf Pariwisata</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                    <span id="car-type-error" class="error-message hidden"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes" class="form-label">Catatan (opsional)</label>
+                    <textarea id="notes" name="notes" class="form-textarea" placeholder="Informasi tambahan yang perlu kami ketahui"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>
+                    Kirim via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+
+    <main role="main" id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer-bg text-[var(--footer-text-color)] py-8" role="contentinfo">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4">
+                <a href="{{ url_for('index') }}" class="text-xl font-bold" aria-label="Kembali ke beranda">
+                    <span class="logo-text-main">CV. Enam Satu</span>
+                    <span class="text-[var(--footer-text-color)]">Rentalindo</span>
+                </a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4" role="navigation" aria-label="Media sosial">
+                <a href="https://www.tiktok.com/@black.canyon.transport?_t=ZS-8wbKj0Shr2G&_r=1" target="_blank" rel="noopener" class="text-[var(--footer-text-color)] hover:text-[var(--footer-link-hover-color)] transition-colors" aria-label="TikTok kami"><i class="fab fa-tiktok fa-lg" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/blackcanyon.ind?igsh=MTRlbmpsbzNvd2Uzeg==" target="_blank" rel="noopener" class="text-[var(--footer-text-color)] hover:text-[var(--footer-link-hover-color)] transition-colors" aria-label="Instagram kami"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+                <a href="https://wa.me/6282311113616?text=Halo%20CV.%20Enam%20Satu%20Rentalindo,%20saya%20tertarik%20untuk%20menyewa%20mobil." target="_blank" rel="noopener" class="text-[var(--footer-text-color)] hover:text-[var(--footer-link-hover-color)] transition-colors" aria-label="WhatsApp kami"><i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> CV. Enam Satu Rentalindo. Hak cipta dilindungi undang-undang.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top-btn" title="Kembali ke atas" aria-label="Kembali ke atas halaman" role="button"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+    {% block whatsapp_float %}
+    <a href="https://wa.me/6282311113616?text=Halo%20CV.%20Enam%20Satu%20Rentalindo,%20saya%20tertarik%20untuk%20menyewa%20mobil." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi via WhatsApp" role="button"><i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+    {% endblock %}
+    
+    {% block modals %}{% endblock %}
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 
