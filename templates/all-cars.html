@@ -14,6 +14,188 @@
 {% block aria_current_cars %}page{% endblock %}
 {% block mobile_aria_current_cars %}page{% endblock %}
 
+{% block extra_css %}
+<style>
+    /* Car Card Animations */
+    .car-card-new {
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateY(20px);
+        opacity: 0;
+        animation: fadeInUp 0.7s ease forwards;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .car-card-new:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .car-card-new .img-container {
+        overflow: hidden;
+        border-radius: 0.75rem 0.75rem 0 0;
+    }
+
+    .car-card-new .img-container img {
+        transition: transform 0.7s ease;
+    }
+
+    .car-card-new:hover .img-container img {
+        transform: scale(1.08);
+    }
+
+    .car-card-new .card-content {
+        transition: background-color 0.3s ease;
+    }
+
+    .car-card-new:hover .card-content {
+        background-color: var(--section-bg-alt);
+    }
+
+    .car-card-new .car-name {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .car-card-new:hover .car-name {
+        color: var(--primary-blue);
+    }
+
+    .car-card-new .car-name::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-blue);
+        transition: width 0.3s ease;
+    }
+
+    .car-card-new:hover .car-name::after {
+        width: 100%;
+    }
+
+    .car-card-new .btn-booking {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    .car-card-new .btn-booking::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+        transition: left 0.5s ease;
+        z-index: -1;
+    }
+
+    .car-card-new:hover .btn-booking::before {
+        left: 100%;
+    }
+
+    /* Staggered Animation for Cards */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* More staggered delays for all-cars page with more cards */
+    .grid .car-card-new:nth-child(1) { animation-delay: 0.1s; }
+    .grid .car-card-new:nth-child(2) { animation-delay: 0.15s; }
+    .grid .car-card-new:nth-child(3) { animation-delay: 0.2s; }
+    .grid .car-card-new:nth-child(4) { animation-delay: 0.25s; }
+    .grid .car-card-new:nth-child(5) { animation-delay: 0.3s; }
+    .grid .car-card-new:nth-child(6) { animation-delay: 0.35s; }
+    .grid .car-card-new:nth-child(7) { animation-delay: 0.4s; }
+    .grid .car-card-new:nth-child(8) { animation-delay: 0.45s; }
+    .grid .car-card-new:nth-child(9) { animation-delay: 0.5s; }
+    .grid .car-card-new:nth-child(10) { animation-delay: 0.55s; }
+    .grid .car-card-new:nth-child(11) { animation-delay: 0.6s; }
+    .grid .car-card-new:nth-child(12) { animation-delay: 0.65s; }
+    .grid .car-card-new:nth-child(13) { animation-delay: 0.7s; }
+    .grid .car-card-new:nth-child(14) { animation-delay: 0.75s; }
+    .grid .car-card-new:nth-child(15) { animation-delay: 0.8s; }
+    .grid .car-card-new:nth-child(16) { animation-delay: 0.85s; }
+
+    /* Special Request Box Animation */
+    .text-center.py-8.bg-\[var\(--section-bg-alt\)\] {
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        animation: fadeIn 1s ease 0.9s forwards;
+        opacity: 0;
+    }
+
+    .text-center.py-8.bg-\[var\(--section-bg-alt\)\]:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Button animation */
+    .btn-primary {
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.2), rgba(255,255,255,0) 70%);
+        transform: translateX(-100%);
+        animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    /* Additional classes for JavaScript interactions */
+    .animated {
+        animation: fadeInUp 0.7s ease forwards;
+    }
+
+    .hover-effect {
+        animation: pulse 0.5s ease;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
     <section class="py-16 md:py-24" aria-labelledby="cars-list-heading">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -308,4 +490,99 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Setup Intersection Observer for car cards
+        const carCards = document.querySelectorAll('.car-card-new');
+        
+        // Check if IntersectionObserver is supported
+        if ('IntersectionObserver' in window) {
+            const carObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // If element is in view
+                    if (entry.isIntersecting) {
+                        // Force animation reset by removing and re-adding animation class
+                        entry.target.style.animation = 'none';
+                        // Trigger reflow
+                        entry.target.offsetHeight;
+                        // Remove inline style to let CSS animations take over
+                        entry.target.style.animation = '';
+                        
+                        // Add animated class
+                        entry.target.classList.add('animated');
+                        
+                        // Unobserve the element after it's animated
+                        carObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null, // Use viewport as root
+                rootMargin: '0px',
+                threshold: 0.15 // Element is considered in view when 15% of it is visible
+            });
+            
+            // Observe each car card
+            carCards.forEach(card => {
+                carObserver.observe(card);
+            });
+        } else {
+            // Fallback for browsers that don't support IntersectionObserver
+            carCards.forEach(card => {
+                card.classList.add('animated');
+            });
+        }
+        
+        // Special animation for the contact box
+        const specialRequestBox = document.querySelector('.text-center.py-8.bg-\\[var\\(--section-bg-alt\\)\\]');
+        if (specialRequestBox && 'IntersectionObserver' in window) {
+            const boxObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Apply a subtle bounce animation
+                        entry.target.style.animation = 'fadeIn 0.8s ease forwards';
+                        
+                        // Unobserve after animating
+                        boxObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+            
+            boxObserver.observe(specialRequestBox);
+        }
+        
+        // Apply animations to buttons
+        const buttons = document.querySelectorAll('.btn-booking, .btn-primary');
+        if (buttons.length && 'IntersectionObserver' in window) {
+            const buttonObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Apply hover effect
+                        entry.target.addEventListener('mouseover', function() {
+                            this.classList.add('hover-effect');
+                        });
+                        
+                        entry.target.addEventListener('mouseout', function() {
+                            this.classList.remove('hover-effect');
+                        });
+                        
+                        // Unobserve after setting up
+                        buttonObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            
+            buttons.forEach(button => {
+                buttonObserver.observe(button);
+            });
+        }
+    });
+</script>
 {% endblock %} 
